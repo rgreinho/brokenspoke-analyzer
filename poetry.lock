@@ -517,7 +517,7 @@ test = ["pytest (>=3)", "pytest-cov", "boto3 (>=1.2.4)", "mock"]
 
 [[package]]
 name = "flake8"
-version = "5.0.2"
+version = "5.0.4"
 description = "the modular source code checker: pep8 pyflakes and co"
 category = "dev"
 optional = false
@@ -2283,7 +2283,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "576c9c66f9463538048495b3bf6e6f51f1f29f231290286c41cd07445a6993d1"
+content-hash = "b286471436d7d71f55a30af373d38058e45652298e165bbe5f08a1f24d7205ff"
 
 [metadata.files]
 aiohttp = [
@@ -2761,8 +2761,8 @@ fiona = [
     {file = "Fiona-1.8.21.tar.gz", hash = "sha256:3a0edca2a7a070db405d71187214a43d2333a57b4097544a3fcc282066a58bfc"},
 ]
 flake8 = [
-    {file = "flake8-5.0.2-py2.py3-none-any.whl", hash = "sha256:a7926e0b6d23c0991245b60279e774d2596dfecd9b158525d1f8c050a61eae5a"},
-    {file = "flake8-5.0.2.tar.gz", hash = "sha256:9cc32bc0c5d16eacc014c7ec6f0e9565fd81df66c2092c3c9df06e3c1ac95e5d"},
+    {file = "flake8-5.0.4-py2.py3-none-any.whl", hash = "sha256:7a1cf6b73744f5806ab95e526f6f0d8c01c66d7bbe349562d22dfca20610b248"},
+    {file = "flake8-5.0.4.tar.gz", hash = "sha256:6fbe320aad8d6b95cec8b8e47bc933004678dc63095be98528b7bdd2a9f510db"},
 ]
 fonttools = [
     {file = "fonttools-4.34.4-py3-none-any.whl", hash = "sha256:d73f25b283cd8033367451122aa868a23de0734757a01984e4b30b18b9050c72"},
