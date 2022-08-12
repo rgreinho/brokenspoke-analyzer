@@ -1,5 +1,10 @@
 # Brokenspoke-analyzer
 
+[![ci](https://github.com/PeopleForBikes/brokenspoke-analyzer/actions/workflows/ci.yaml/badge.svg)](https://github.com/PeopleForBikes/brokenspoke-analyzer/actions/workflows/ci.yaml)
+[![Latest Version](https://img.shields.io/github/v/tag/PeopleForBikes/brokenspoke-analyzer?sort=semver&label=version)](https://github.com/PeopleForBikes/brokenspoke-analyzer/)
+[![License](https://img.shields.io/badge/license-mit-blue.svg)](https://github.com/PeopleForBikes/brokenspoke-analyzer/blob/main/LICENSE)
+[![Code of Conduct](https://img.shields.io/badge/code_of_conduct-🌐-ff69b4.svg?logoColor=white)](https://github.com/PeopleForBikes/brokenspoke-analyzer/blob/main/code-of-conduct.md)
+
 The Brokenspoke Analyzer is a tool allowing the user to run “Bicycle Network
 Analysis” locally.
 
@@ -8,16 +13,34 @@ Analysis” locally.
 - **docker**: [get started](https://www.docker.com/get-started/)
 - **osmium**: [official page](https://osmcode.org/osmium-tool/)
 
-### Build the Azavea docker image
+### pfb-network-connectivity Docker image
 
 Azavea provides the code to build the Docker image that is used to run an
-analysis. There is no Image directly available at the time, thus it will
-necessary to build it manually.
+analysis. There is no Image directly available at the time, thus it will be
+necessary to build it manually, or pull it from an unofficial source.
+
+#### Pull the image from an unofficial repository
+
+There is no official `azavea/pfb-network-connectivity` repository (yet 🤞), but
+it is possible to pull the image from an unofficial one, and rename it to the
+expected name.
 
 ```bash
-git clone git@github.com:azavea/pfb-network-connectivity.git
-cd pfb-network-connectivity/src/
-DOCKER_BUILDKIT=1 docker build -t azavea/analyzer:13-3.1 -f analysis/Dockerfile .
+docker pull rgreinho/pfb-network-connectivity:0.16
+docker tag rgreinho/pfb-network-connectivity:0.16 azavea/pfb-network-connectivity:0.16
+```
+
+#### Build the Azavea docker image
+
+The official repository does not have tags (yet 🤞), therefore the image must be
+built from a fork.
+
+```bash
+git clone git@github.com:rgreinho/pfb-network-connectivity.git
+cd pfb-network-connectivity
+git checkout tags/0.16 -b 0.16
+cd src/
+DOCKER_BUILDKIT=1 docker build -t azavea/pfb-network-connectivity:0.16 -f analysis/Dockerfile .
 ```
 
 ## Install

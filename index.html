@@ -201,6 +201,10 @@
         <article role="main">
           <section id="brokenspoke-analyzer">
 <h1>Brokenspoke-analyzer<a class="headerlink" href="#brokenspoke-analyzer" title="Permalink to this heading">#</a></h1>
+<p><a class="reference external" href="https://github.com/PeopleForBikes/brokenspoke-analyzer/actions/workflows/ci.yaml"><img alt="ci" src="https://github.com/PeopleForBikes/brokenspoke-analyzer/actions/workflows/ci.yaml/badge.svg" /></a>
+<a class="reference external" href="https://github.com/PeopleForBikes/brokenspoke-analyzer/"><img alt="Latest Version" src="https://img.shields.io/github/v/tag/PeopleForBikes/brokenspoke-analyzer?sort=semver&amp;label=version" /></a>
+<a class="reference external" href="https://github.com/PeopleForBikes/brokenspoke-analyzer/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-mit-blue.svg" /></a>
+<a class="reference external" href="https://github.com/PeopleForBikes/brokenspoke-analyzer/blob/main/code-of-conduct.md"><img alt="Code of Conduct" src="https://img.shields.io/badge/code_of_conduct-%F0%9F%8C%90-ff69b4.svg?logoColor=white" /></a></p>
 <p>The Brokenspoke Analyzer is a tool allowing the user to run “Bicycle Network
 Analysis” locally.</p>
 <section id="requirements">
@@ -209,16 +213,33 @@ Analysis” locally.</p>
 <li><p><strong>docker</strong>: <a class="reference external" href="https://www.docker.com/get-started/">get started</a></p></li>
 <li><p><strong>osmium</strong>: <a class="reference external" href="https://osmcode.org/osmium-tool/">official page</a></p></li>
 </ul>
-<section id="build-the-azavea-docker-image">
-<h3>Build the Azavea docker image<a class="headerlink" href="#build-the-azavea-docker-image" title="Permalink to this heading">#</a></h3>
+<section id="pfb-network-connectivity-docker-image">
+<h3>pfb-network-connectivity Docker image<a class="headerlink" href="#pfb-network-connectivity-docker-image" title="Permalink to this heading">#</a></h3>
 <p>Azavea provides the code to build the Docker image that is used to run an
-analysis. There is no Image directly available at the time, thus it will
-necessary to build it manually.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:azavea/pfb-network-connectivity.git
-<span class="nb">cd</span> pfb-network-connectivity/src/
-<span class="nv">DOCKER_BUILDKIT</span><span class="o">=</span><span class="m">1</span> docker build -t azavea/analyzer:13-3.1 -f analysis/Dockerfile .
+analysis. There is no Image directly available at the time, thus it will be
+necessary to build it manually, or pull it from an unofficial source.</p>
+<section id="pull-the-image-from-an-unofficial-repository">
+<h4>Pull the image from an unofficial repository<a class="headerlink" href="#pull-the-image-from-an-unofficial-repository" title="Permalink to this heading">#</a></h4>
+<p>There is no official <code class="docutils literal notranslate"><span class="pre">azavea/pfb-network-connectivity</span></code> repository (yet 🤞), but
+it is possible to pull the image from an unofficial one, and rename it to the
+expected name.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull rgreinho/pfb-network-connectivity:0.16
+docker tag rgreinho/pfb-network-connectivity:0.16 azavea/pfb-network-connectivity:0.16
 </pre></div>
 </div>
+</section>
+<section id="build-the-azavea-docker-image">
+<h4>Build the Azavea docker image<a class="headerlink" href="#build-the-azavea-docker-image" title="Permalink to this heading">#</a></h4>
+<p>The official repository does not have tags (yet 🤞), therefore the image must be
+built from a fork.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:rgreinho/pfb-network-connectivity.git
+<span class="nb">cd</span> pfb-network-connectivity
+git checkout tags/0.16 -b <span class="m">0</span>.16
+<span class="nb">cd</span> src/
+<span class="nv">DOCKER_BUILDKIT</span><span class="o">=</span><span class="m">1</span> docker build -t azavea/pfb-network-connectivity:0.16 -f analysis/Dockerfile .
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 <section id="install">
@@ -297,6 +318,11 @@ Downloaded Protobuf data <span class="s1">&#39;arizona-latest.osm.pbf&#39;</span
           </div>
           <div class="right-details">
             <div class="icons">
+              <a class="muted-link " href="https://github.com/PeopleForBikes/brokenspoke-analyzer" aria-label="GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
               
             </div>
           </div>
@@ -318,7 +344,11 @@ Downloaded Protobuf data <span class="s1">&#39;arizona-latest.osm.pbf&#39;</span
             <ul>
 <li><a class="reference internal" href="#">Brokenspoke-analyzer</a><ul>
 <li><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li><a class="reference internal" href="#pfb-network-connectivity-docker-image">pfb-network-connectivity Docker image</a><ul>
+<li><a class="reference internal" href="#pull-the-image-from-an-unofficial-repository">Pull the image from an unofficial repository</a></li>
 <li><a class="reference internal" href="#build-the-azavea-docker-image">Build the Azavea docker image</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#install">Install</a></li>
